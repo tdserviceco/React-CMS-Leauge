@@ -1,0 +1,8 @@
+@import './reset.scss';
+$color: yellow;
+html {
+  background: $color;
+  p {
+    color: green;
+  }
+}
