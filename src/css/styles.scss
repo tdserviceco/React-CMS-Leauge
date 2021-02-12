@@ -1,1 +1,21 @@
-@import './reset.scss';
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap');
+@import "./reset.scss";
+main {
+  $openSansPro: 'Source Sans Pro', sans-serif;
+  font-family: $openSansPro;
+  @import "./header.scss";
+  @import "./home.scss";
+  @import "./createSeasonForm.scss";
+
+  .btn {
+    border: none;
+    background: #e3e3e3;
+    display: flex;
+    font-family: $openSansPro;
+    .create-field {
+      justify-self: center;
+      align-self: center;
+      font-size: 1rem;
+    }
+  }
+}

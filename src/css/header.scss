@@ -1,0 +1,19 @@
+header {
+  border-bottom: 0.0625rem solid #c0c0c0;
+  padding: 0.2rem 1rem;
+  text-align: right;
+  margin-bottom: 2rem;
+  a {
+    text-decoration: none;
+    color: #000;
+    transition: all 250ms ease-in;
+    &:hover {
+      color: rgba(0,0,0,0.5);
+      text-decoration: underline;
+    }
+  }
+
+  :first-child {
+    padding-right: 1rem;
+  }
+}
