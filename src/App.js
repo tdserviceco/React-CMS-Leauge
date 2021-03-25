@@ -11,7 +11,7 @@ function App() {
 
   useState(() => {
     testMethod().then(res => {
-      console.log(res)
+      console.log("result:", res)
     })
   }, [])
   return (
