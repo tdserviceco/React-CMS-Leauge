@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import Axios from 'axios';
+import React from 'react';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,45 +9,21 @@ import {
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import NoMatch from './pages/NoMatch';
-import CreateSeason from './pages/CreateSeason';
-import SeasonContent from './pages/SeasonContent'
+import CreateList from './pages/CreateList';
+import ListContent from './pages/ListContent';
 
 
 function App() {
-  useEffect(() => {
-    document.title = "Seasons from different tournaments"
-    startMeUp().then(res => {
-      if (res.data.lenght === 0) {
-        return `<h1>${res.data}</h1>`
-      }
-    }).catch(error => {
-      console.error(error)
-    })
-  }, []);
-
-  const startMeUp = async () => {
-    return await Axios.get('http://localhost:8080/checkup/isdbempty');
-  }
-
   return (
     <main>
       <Router>
         <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/season/:id/:title">
-            <SeasonContent />
-          </Route>
-          <Route exact path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route exact path="/dashboard/create/season">
-            <CreateSeason />
-          </Route>
-          <Route path="*">
-            <NoMatch />
-          </Route>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/list/:id/:title" component={ListContent} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboard/create/list" component={CreateList} />
+          <Route exact path="/dashboard/create/list/step2" component={CreateList} />
+          <Route component={NoMatch} />
         </Switch>
       </Router>
     </main>

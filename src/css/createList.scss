@@ -1,0 +1,21 @@
+.create-list {
+  label,
+  .namefields {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title,
+  .itemfield:last-child {
+    margin-bottom: 1rem;
+  }
+
+  .itemfield {
+    margin: 1rem 0;
+  }
+
+  .remove-item {
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -1,8 +1,8 @@
 const port = 9000;
-const HTMLplugin = require('html-webpack-plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   output: {
     path: path.resolve(__dirname, "build"),
@@ -17,7 +17,7 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-        test: /\.html$/,
+        test: /\.html$/i,
         use: [
           {
             loader: 'html-loader'
@@ -52,15 +52,15 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
   },
   plugins: [
-    new HTMLplugin({
-      filename: 'index.html',
-      template: './src/index.html'
-    }),
     new MiniCssExtractPlugin(),
     new Webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
       //Here you can more process.env.*what-ever-you-name-them : JSON.stringify('String enters here')*
     }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './src/index.html'
+    })
   ],
   devServer: {
     historyApiFallback: true,

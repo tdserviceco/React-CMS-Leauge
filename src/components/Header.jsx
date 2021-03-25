@@ -6,7 +6,7 @@ function Header(props) {
   return (
     <header>
       <Link to={'/'}>Home</Link>
-      <Link to={'/dashboard/create/season'}>Create new season</Link>
+      <Link to={'/dashboard/create/list'}>Create new todo</Link>
     </header>
   );
 }

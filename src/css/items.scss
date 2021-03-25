@@ -1,0 +1,13 @@
+.items {
+  .title {
+    font-size: 3rem;
+  }
+
+  .item-check {
+    padding: 1rem 0;
+    font-size: 2rem;
+    .check-line {
+      text-decoration: line-through;
+    }
+  }
+}

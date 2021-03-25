@@ -13,7 +13,6 @@ const PASSWORD = process.env.PASSWORD || 'password';
 const PORTDB = process.env.DBPORT || 3360;
 const DB = process.env.DB || '';
 
-
 // Create Database Connection
 const db = mysql.createConnection({
   host: HOST,
@@ -22,6 +21,7 @@ const db = mysql.createConnection({
   port: PORTDB,
   database: DB
 })
+console.log(USERNAME);
 db.connect(function (err) {
   if (err) {
     console.error('error connecting: ' + err.stack);
@@ -53,36 +53,62 @@ app.get('/checkup/isdbempty', function (req, res) {
 // Update (Put)
 // Delete (Delete)
 
-app.get('/get/seasons', function (req, res) {
-  let query = `SELECT * FROM seasons`;
+app.get('/get/todo-list', (req, res) => {
+  let query = `SELECT * FROM todoList`;
   db.query(query, (err, result) => {
     if (err) throw err;
     res.send(result)
   })
 });
 
+app.get('/get/fullList/:id', (req, res) => {
+  let query = `SELECT todoList.name, items.item FROM items INNER JOIN todoList ON items.listID = todoList.id WHERE items.listID = ${req.params['id']}`;
+  db.query(query, (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  })
+});
 
-app.get('/get/season/:id', function (req, res) {
-  let query = `SELECT * FROM seasons WHERE id=${req.params['id']}`;
+app.get('/get/list/:id', (req, res) => {
+  let query = `SELECT name FROM todoList WHERE todoList.id=${req.params['id']}`;
+
   db.query(query, (err, result) => {
     if (err) throw err;
     res.send(result)
   })
 });
 
-app.post('/create/season', function (req, res) {
+app.post('/create/list', (req, res) => {
   let post = req.body;
-  let query = `INSERT INTO seasons SET ?`;
-  console.log(post)
+  let query = `INSERT INTO todoList SET ?`;
 
-  // db.query(query, post, (err, result) => {
-  //   if(err) throw err;
-  //   console.log('Done');
-  //   res.send('Done')
-  // })
+  db.query(query, post, (err, result) => {
+    if (err) throw err;
+    res.send(result)
+  })
 });
 
-app.get('/*', function (req, res) {
+app.post('/create/items', (req, res) => {
+  let post = {
+    listID: req.body.listID,
+    item: JSON.stringify(req.body.item.items)
+  };
+  let query = `INSERT INTO items SET ?`;
+
+  db.query(query, post, (err, result) => {
+    if (err) throw err;
+    res.send(result)
+  })
+});
+
+app.delete('/delete/list', (req, res) => {
+  let query = `DELETE todoList, items FROM items INNER JOIN todoList ON items.listID = todoList.id WHERE items.listID = ${req.body.id}`;
+  db.query(query, (err, result) => {
+    if (err) throw err;
+  })
+})
+
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 

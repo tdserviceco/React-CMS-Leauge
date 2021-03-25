@@ -1,21 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap");
 @import "./reset.scss";
 main {
-  $openSansPro: 'Source Sans Pro', sans-serif;
+  $openSansPro: "Source Sans Pro", sans-serif;
   font-family: $openSansPro;
   @import "./header.scss";
   @import "./home.scss";
-  @import "./createSeasonForm.scss";
+  @import "./createList.scss";
+  @import "./items.scss";
+  .lists,
+  .items,
+  .create-list {
+    display: flex;
+    flex-direction: column;
+    width: 31.25rem;
+    margin: 0 auto;
+  }
 
   .btn {
-    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.5);
     background: #e3e3e3;
     display: flex;
+    width: 50px;
+    justify-content: center;
     font-family: $openSansPro;
-    .create-field {
-      justify-self: center;
-      align-self: center;
+    &.create-field,
+    &.remove-field {
+      margin: 1rem 0;
       font-size: 1rem;
+    }
+    &.remove-list {
+      padding: 1rem 0.5rem;
+      width: auto;
+      font-size: 2rem;
     }
   }
 }

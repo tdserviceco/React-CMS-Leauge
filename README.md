@@ -15,11 +15,10 @@ What the webpack contains
 * JS support (Same as above)
 * Image/Favicon and Font support
 
-
 Minor warning:
 ***
-If you get `'cross-env' is not recognized as an internal or external command,
-operable program or batch file.` then use these commands to "fix" it.
-`rm -rf node_modules && rm package-lock.json && npm cache clear --force`
+Just to be on the safe side (future proff the package) run `npm audit fix` after `npm i` this way you purge all the bad stuff.
 
-then use `npm i && npm start`
+If you get `'cross-env' is not recognized as an internal or external command,
+operable program or batch file.` then use this commands to "fix" it.
+`rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm i && npm start`
