@@ -10,7 +10,7 @@ function DisplayList(props) {
 
   const { id } = useParams();
   const fetchList = async () => {
-    axios.get(`https://todo2021-db.herokuapp.com/api/todoList/${id}`).then(res => {
+    await axios.get(`https://todo2021-db.herokuapp.com/api/todoList/${id}`).then(res => {
       updateTitle(res.data[0].name);
       updateItems(JSON.parse(res.data[0].items));
     })
