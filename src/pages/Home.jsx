@@ -14,7 +14,6 @@ function Home(props) {
   useEffect(() => {
     document.title = "ToDo lists"
     getList().then(res => {
-      console.log(res.data)
       updateLists(res.data)
     }).catch(error => {
       console.error(error)

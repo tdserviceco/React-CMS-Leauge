@@ -11,9 +11,8 @@ function DisplayList(props) {
   const { id } = useParams();
   const fetchList = async () => {
     axios.get(`https://todo2021-db.herokuapp.com/api/todoList/${id}`).then(res => {
-      console.log(res.data)
-      // updateTitle(res.data[0].name);
-      // updateItems(JSON.parse(res.data[0].item));
+      updateTitle(res.data[0].name);
+      updateItems(JSON.parse(res.data[0].items));
     })
   }
   useEffect(() => {
@@ -46,7 +45,6 @@ function DisplayList(props) {
   }
 
   const removeList = () => {
-    console.log(id)
     let data = { data: { id: id } }
     axios.delete('https://todo2021-db.herokuapp.com/api/lists', data).then(
       alert("list deleted!")
