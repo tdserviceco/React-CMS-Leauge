@@ -80,7 +80,7 @@ function CreateListLastStep(props) {
         items
       }
     }
-    axios.post('https://todo2021-db.herokuapp.com/api/items', data).then(res => {
+    axios.post('https://todo2021-db.herokuapp.com/api/item_list', data).then(res => {
       alert(`List saved!`)
     }).catch(error => console.error(error));
     updateItems([{ item: '' }])
