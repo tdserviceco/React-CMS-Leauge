@@ -18,7 +18,7 @@ function Home(props) {
     }).catch(error => {
       console.error(error)
     })
-  }, [])
+  }, [lists])
 
   const mapList = () => {
     if (lists.length === 0) {
